@@ -13,7 +13,7 @@ const messageItem = {
 class MessageItem extends React.Component {
   render() {
     return (
-      <div className="message-item" style={messageItem}>
+      <div style={messageItem}>
         <Emoji text={this.props.message} />
       </div>
     );

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addMessage, clearMessages } from '../actions';
 
 const bar = {
   marginTop : "20px"
@@ -8,8 +10,7 @@ class MessageBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message : '',
-      enabled : false
+      message : ''
     }
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,17 +23,17 @@ class MessageBar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.sendMessage(this.state.message)
+    this.props.dispatch(addMessage(this.state.message));
     this.setState({message : ""})
   }
 
-  handleClear(){
-    this.props.clearMessage();
+  handleClear() {
+    this.props.dispatch(clearMessages());
   }
 
   render() {
     return (
-      <div className="message-bar" style={bar}>
+      <div style={bar}>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="message" placeholder="Ecrivez un message"
            value={this.state.message} onChange={this.handleMessageChange}/>
@@ -44,4 +45,4 @@ class MessageBar extends React.Component {
   }
 }
 
-export default MessageBar;
+export default connect()(MessageBar);
