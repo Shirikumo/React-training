@@ -21,6 +21,7 @@ class Chat extends React.Component {
       messages: []
     };
     this.addMessage = this.addMessage.bind(this);
+    this.clearMessage = this.clearMessage.bind(this);
   }
 
   addMessage(message) {
@@ -28,12 +29,18 @@ class Chat extends React.Component {
     this.setState({messages: joined});
   }
 
+  clearMessage(){
+    this.setState({messages: []});
+  }
+
   render() {
     return (
       <div className="chat" style={chat}>
         <h1 style={title}>Un tchat</h1>
         <MessageList messages={this.state.messages}/>
-        <MessageBar sendMessage={this.addMessage} />
+        <MessageBar 
+          sendMessage={this.addMessage} 
+          clearMessage={this.clearMessage} />
       </div>
     );
   }

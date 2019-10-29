@@ -13,6 +13,7 @@ class MessageBar extends React.Component {
     }
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleMessageChange(event){
@@ -25,6 +26,10 @@ class MessageBar extends React.Component {
     this.setState({message : ""})
   }
 
+  handleClear(){
+    this.props.clearMessage();
+  }
+
   render() {
     return (
       <div className="message-bar" style={bar}>
@@ -33,6 +38,7 @@ class MessageBar extends React.Component {
            value={this.state.message} onChange={this.handleMessageChange}/>
           <button type="submit" disabled={!this.state.message}>Envoyer</button>
         </form>
+        <button onClick={this.handleClear}>Effacer</button>
       </div>
     );
   }
