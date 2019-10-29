@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Emoji from 'react-emoji-render';
 
 const messageItem = {
   borderRadius: "15px",
@@ -12,7 +13,9 @@ const messageItem = {
 class MessageItem extends React.Component {
   render() {
     return (
-      <div className="message-item" style={messageItem}>{this.props.message}</div>
+      <div className="message-item" style={messageItem}>
+        <Emoji text={this.props.message} />
+      </div>
     );
   }
 }
