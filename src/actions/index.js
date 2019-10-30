@@ -1,6 +1,8 @@
-export const addMessage = message => ({
+// messages
+export const addMessage = (message, username) => ({
   type: 'ADD_MESSAGE',
-  message
+  message,
+  username
 })
 export const clearMessages = () => ({
   type: 'CLEAR_MESSAGES'
@@ -15,4 +17,10 @@ export const loadMessages = (messages) => ({
 export const errorMessages = (error) => ({
   type: 'GET_MESSAGES_ERROR',
   error
+})
+
+// user
+export const addUser = (name) => ({
+  type: 'ADD_USER',
+  name
 })

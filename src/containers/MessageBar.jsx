@@ -10,7 +10,7 @@ class MessageBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data : {},
+      message : '',
     }
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,16 +18,13 @@ class MessageBar extends React.Component {
   }
 
   handleMessageChange(event){
-    this.setState({data: {
-      username: 'theo',
-      message: event.target.value,
-    }});
+    this.setState({ message: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(addMessage(this.state.data));
-    this.setState({message : ""})
+    this.props.dispatch(addMessage(this.state.message, this.props.username));
+    this.setState({ message: '' })
   }
 
   handleClear() {
@@ -39,8 +36,8 @@ class MessageBar extends React.Component {
       <div style={bar}>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="message" placeholder="Ecrivez un message"
-           value={this.state.data.message} onChange={this.handleMessageChange}/>
-          <button type="submit" disabled={!this.state.data.message}>Envoyer</button>
+           value={this.state.message} onChange={this.handleMessageChange}/>
+          <button type="submit" disabled={!this.state.message}>Envoyer</button>
         </form>
         <button onClick={this.handleClear}>Effacer</button>
       </div>
@@ -48,4 +45,10 @@ class MessageBar extends React.Component {
   }
 }
 
-export default connect()(MessageBar);
+const mapStateToProps = (state) => ({
+  username: state.user.currentUser
+})
+
+export default connect(
+  mapStateToProps
+)(MessageBar);

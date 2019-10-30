@@ -1,6 +1,6 @@
 import React from 'react';
-import MessageList from '../containers/MessageList';
-import MessageBar from '../containers/MessageBar';
+import MessageList from './MessageList';
+import MessageBar from './MessageBar';
 import { connect } from 'react-redux';
 import { getMessages, loadMessages, errorMessages } from '../actions';
 import axios from 'axios';

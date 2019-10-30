@@ -1,0 +1,3 @@
+separer les containers des composants -> containers = connection réutilisable, composants = vue.
+passer mes methodes dans les actions et dispatch correctement
+gerer le datetime dans add message

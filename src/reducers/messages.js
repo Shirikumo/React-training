@@ -1,18 +1,18 @@
 const INITIAL_STATES = {
   messagesList : [],
   loading : false,
-  error : {},
-  currentUser: ''
+  error : {}
 }
 
 const messages = (state = INITIAL_STATES, action) => {
   switch (action.type) {
     case 'ADD_MESSAGE':
-      return Object.assign({}, state, {messagesList : state.messagesList.concat(action.message) });
+      let added = state.messagesList.concat({username: action.username, message: action.message});
+      return Object.assign({}, state, {messagesList: added} )
     case 'CLEAR_MESSAGES':
-      let result = Object.assign({}, state);
-      result.messagesList = [];
-      return result;
+      let cleared = Object.assign({}, state);
+      cleared.messagesList = [];
+      return cleared;
     case 'GET_MESSAGES_PENDING':
       return Object.assign({}, state, {loading : true});
     case 'GET_MESSAGES_SUCCESS':
