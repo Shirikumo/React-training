@@ -23,14 +23,16 @@ class Chat extends React.Component {
   }
 
   getMessage() {
-    this.props.dispatch(getMessages());
-    axios.get('https://my-json-server.typicode.com/tlenclos/formation-react-fake-server/messages')
-    .then(response => {
-      this.props.dispatch(loadMessages(response.data));
-    })
-    .catch(error => {
-      this.props.dispatch(errorMessages(error));
-    })
+    if(!this.props.messages.length > 0) {
+      this.props.dispatch(getMessages());
+      axios.get('https://my-json-server.typicode.com/tlenclos/formation-react-fake-server/messages')
+      .then(response => {
+        this.props.dispatch(loadMessages(response.data));
+      })
+      .catch(error => {
+        this.props.dispatch(errorMessages(error));
+      })
+    }
   }
 
   render() {
@@ -44,6 +46,10 @@ class Chat extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  messages: state.messages.messagesList
+})
+
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     // getMessages
@@ -51,4 +57,6 @@ class Chat extends React.Component {
 // }
 
 // export default connect(null, mapDispatchToProps)(Chat);
-export default connect()(Chat);
+export default connect(
+  mapStateToProps
+)(Chat);
