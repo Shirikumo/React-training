@@ -39,7 +39,7 @@ class MessageBar extends React.Component {
            value={this.state.message} onChange={this.handleMessageChange}/>
           <button type="submit" disabled={!this.state.message}>Envoyer</button>
         </form>
-        <button onClick={this.handleClear}>Effacer</button>
+        <button onClick={this.handleClear}>Effacer les messages</button>
       </div>
     );
   }

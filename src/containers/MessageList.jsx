@@ -8,9 +8,14 @@ const list = {
 }
 
 class MessageList extends React.Component {
+  componentDidUpdate() {
+    let list = document.getElementById("messageList");
+    list.scrollTop = list.scrollHeight;
+  }
+
   render() {
     return (
-      <div style={list}>
+      <div id="messageList" style={list}>
         {
           (this.props.messages && this.props.messages.length > 0) ? 
             this.props.messages.map((item, key) => 
