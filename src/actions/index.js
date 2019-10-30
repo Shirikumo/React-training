@@ -12,3 +12,7 @@ export const loadMessages = (messages) => ({
   type: 'GET_MESSAGES_SUCCESS',
   messages
 })
+export const errorMessages = (error) => ({
+  type: 'GET_MESSAGES_ERROR',
+  error
+})

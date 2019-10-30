@@ -1,6 +1,8 @@
 const INITIAL_STATES = {
   messagesList : [],
-  loading : false
+  loading : false,
+  error : {},
+  currentUser: ''
 }
 
 const messages = (state = INITIAL_STATES, action) => {
@@ -15,6 +17,8 @@ const messages = (state = INITIAL_STATES, action) => {
       return Object.assign({}, state, {loading : true});
     case 'GET_MESSAGES_SUCCESS':
       return Object.assign({}, state, {messagesList : action.messages, loading : false});
+    case 'GET_MESSAGES_ERROR':
+      return Object.assign({}, state, {error : action.error});
     default:
       return state
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import MessageList from '../containers/MessageList';
 import MessageBar from '../containers/MessageBar';
 import { connect } from 'react-redux';
-import { getMessages, loadMessages } from '../actions';
+import { getMessages, loadMessages, errorMessages } from '../actions';
 import axios from 'axios';
 
 const chat = {
@@ -29,7 +29,7 @@ class Chat extends React.Component {
       this.props.dispatch(loadMessages(response.data));
     })
     .catch(error => {
-      console.log(error);
+      this.props.dispatch(errorMessages(error));
     })
   }
 
