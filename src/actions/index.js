@@ -3,5 +3,12 @@ export const addMessage = message => ({
   message
 })
 export const clearMessages = () => ({
-  type: 'CLEAR_MESSAGE'
+  type: 'CLEAR_MESSAGES'
+})
+export const getMessages = () => ({
+  type: 'GET_MESSAGES_PENDING'
+})
+export const loadMessages = (messages) => ({
+  type: 'GET_MESSAGES_SUCCESS',
+  messages
 })

@@ -14,7 +14,7 @@ class MessageList extends React.Component {
         {
           (this.props.messages && this.props.messages.length > 0) ? 
             this.props.messages.map((item, key) => 
-            <MessageItem key={key} message={item}/>
+            <MessageItem key={key} message={item.message}/>
           )
         : 
           <div>Il n'y a aucun message...</div>
@@ -25,7 +25,7 @@ class MessageList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  messages: state.messages
+  messages: state.messages.messagesList
 })
 
 export default connect(

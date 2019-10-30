@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from "redux";
-import { save, load } from "redux-localstorage-simple";
+import { save } from "redux-localstorage-simple";
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import indexReducers from './reducers/index';
 
-const createStoreWithMiddleware = applyMiddleware(save())(createStore);
+const createStoreWithMiddleware = applyMiddleware(save(), thunk)(createStore);
 
 const store = createStoreWithMiddleware(
   indexReducers,
-  load(),
+  // load(),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

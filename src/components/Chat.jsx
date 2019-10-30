@@ -1,6 +1,9 @@
 import React from 'react';
 import MessageList from '../containers/MessageList';
 import MessageBar from '../containers/MessageBar';
+import { connect } from 'react-redux';
+import { getMessages, loadMessages } from '../actions';
+import axios from 'axios';
 
 const chat = {
   backgroundColor : "#f2b532",
@@ -15,6 +18,21 @@ const title = {
 }
 
 class Chat extends React.Component {
+  componentDidMount() {
+    this.getMessage();
+  }
+
+  getMessage() {
+    this.props.dispatch(getMessages());
+    axios.get('https://my-json-server.typicode.com/tlenclos/formation-react-fake-server/messages')
+    .then(response => {
+      this.props.dispatch(loadMessages(response.data));
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   render() {
     return (
       <div style={chat}>
@@ -26,4 +44,11 @@ class Chat extends React.Component {
   }
 }
 
-export default Chat;
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // getMessages
+//   }
+// }
+
+// export default connect(null, mapDispatchToProps)(Chat);
+export default connect()(Chat);

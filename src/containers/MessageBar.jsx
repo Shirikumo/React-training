@@ -10,7 +10,7 @@ class MessageBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message : ''
+      message : {},
     }
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,10 @@ class MessageBar extends React.Component {
   }
 
   handleMessageChange(event){
-    this.setState({message: event.target.value});
+    this.setState({message: {
+      username: 'theo',
+      message: event.target.value,
+    }});
   }
 
   handleSubmit(event) {
@@ -36,7 +39,7 @@ class MessageBar extends React.Component {
       <div style={bar}>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="message" placeholder="Ecrivez un message"
-           value={this.state.message} onChange={this.handleMessageChange}/>
+           value={this.state.message.message} onChange={this.handleMessageChange}/>
           <button type="submit" disabled={!this.state.message}>Envoyer</button>
         </form>
         <button onClick={this.handleClear}>Effacer</button>
