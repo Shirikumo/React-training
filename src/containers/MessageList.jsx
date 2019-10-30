@@ -14,7 +14,7 @@ class MessageList extends React.Component {
         {
           (this.props.messages && this.props.messages.length > 0) ? 
             this.props.messages.map((item, key) => 
-            <MessageItem key={key} message={item.message}/>
+            <MessageItem key={key} message={item.message} user={item.username}/>
           )
         : 
           <div>Il n'y a aucun message...</div>

@@ -14,6 +14,7 @@ class MessageItem extends React.Component {
   render() {
     return (
       <div style={messageItem}>
+        <small>{this.props.user ? this.props.user : "Anonyme"}</small><br/>
         <Emoji text={this.props.message} />
       </div>
     );
@@ -21,7 +22,8 @@ class MessageItem extends React.Component {
 }
 
 MessageItem.propTypes = {
-  message: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired,
+  user: PropTypes.string
 };
 
 export default MessageItem;
