@@ -22,10 +22,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="mt-5">
+        <p>{this.props.username ? `Votre nom d'utilisateur est : ${this.props.username}` : 'Vous êtes Anonyme'}</p>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="username" placeholder="Votre pseudo"
             value={this.state.username} onChange={this.handleMessageChange} />
-          <button type="submit" disabled={!this.state.username}>Valider</button>
+          <button type="submit">Valider</button>
         </form>
       </div>
     );
@@ -36,4 +37,8 @@ const mapDispatchToProps = {
   addUser
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => ({
+  username: state.user.currentUser
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
