@@ -9,7 +9,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import indexReducers from './reducers/index';
 
-const createStoreWithMiddleware = applyMiddleware(save(), thunk)(createStore);
+const loggerMiddleware = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+}
+
+const createStoreWithMiddleware = applyMiddleware(save(), thunk, loggerMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(
   indexReducers,
