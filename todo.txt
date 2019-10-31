@@ -3,3 +3,4 @@ passer mes methodes dans les actions et dispatch correctement
 gerer le datetime dans add message
 gerer la localization
 clean de manière générale ma syntaxe
+gerer le cas d'error
