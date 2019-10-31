@@ -20,7 +20,6 @@ const createStoreWithMiddleware = applyMiddleware(save(), thunk, loggerMiddlewar
 
 const store = createStoreWithMiddleware(
   indexReducers,
-  // load(),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

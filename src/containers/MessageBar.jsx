@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addMessage, clearMessages } from '../actions';
+import Ws from '../services/websocket';
 
 const bar = {
   marginTop : "20px"
@@ -17,6 +18,14 @@ class MessageBar extends React.Component {
     this.handleClear = this.handleClear.bind(this);
   }
 
+  sendMessage() {
+    try {
+      Ws.send(JSON.stringify(addMessage(this.state.message, this.props.username))) //send data to the server
+    } catch (error) {
+      console.log(error) // catch error
+    }
+  }
+
   handleMessageChange(event){
     this.setState({ message: event.target.value });
   }
@@ -24,6 +33,7 @@ class MessageBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.dispatch(addMessage(this.state.message, this.props.username));
+    this.sendMessage();
     this.setState({ message: '' })
   }
 
@@ -39,7 +49,6 @@ class MessageBar extends React.Component {
            value={this.state.message} onChange={this.handleMessageChange}/>
           <button type="submit" disabled={!this.state.message}>Envoyer</button>
         </form>
-        <button onClick={this.handleClear}>Effacer les messages</button>
       </div>
     );
   }

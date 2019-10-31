@@ -1,20 +1,25 @@
 import React from 'react';
 import MessageItem from '../components/MessageItem';
 
-const list = {
-  height : "400px",
-  overflow : "scroll"
+const listStyle = {
+  height : "600px",
+  overflowY : "scroll"
 }
 
 export default class MessageList extends React.Component {
   componentDidUpdate() {
-    let list = document.getElementById("messageList");
+    const list = document.getElementById("messageList");
+    list.scrollTop = list.scrollHeight;
+  }
+
+  componentDidMount() {
+    const list = document.getElementById("messageList");
     list.scrollTop = list.scrollHeight;
   }
 
   render() {
     return (
-      <div id="messageList" style={list}>
+      <div id="messageList" style={listStyle}>
         {
           (this.props.messages && this.props.messages.length > 0) ? 
             this.props.messages.map((item, key) => 

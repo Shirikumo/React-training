@@ -14,8 +14,8 @@ class MessageItem extends React.Component {
   render() {
     return (
       <div style={messageItem}>
-        <small>{this.props.user ? this.props.user : "Anonyme"}</small><br/>
-        <Emoji text={this.props.message} />
+        <small>{('string' === typeof this.props.user && '' !== this.props.user.trim()) ? this.props.user : "Anonyme"}</small><br/>
+        <Emoji text={(this.props.message || "").toString()} />
       </div>
     );
   }
